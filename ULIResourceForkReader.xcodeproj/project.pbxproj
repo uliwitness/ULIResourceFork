@@ -12,6 +12,9 @@
 		5559CF131EBA59E500815DD9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5559CF121EBA59E500815DD9 /* ViewController.m */; };
 		5559CF151EBA59E500815DD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5559CF141EBA59E500815DD9 /* Assets.xcassets */; };
 		5559CF181EBA59E500815DD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5559CF161EBA59E500815DD9 /* Main.storyboard */; };
+		5559CF211EBA5A2600815DD9 /* ULIResourceFork.m in Sources */ = {isa = PBXBuildFile; fileRef = 5559CF201EBA5A2500815DD9 /* ULIResourceFork.m */; };
+		5559CF241EBA60EC00815DD9 /* ULIStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 5559CF231EBA60EC00815DD9 /* ULIStream.m */; };
+		5559CF271EBA7B6500815DD9 /* ULIResourceForkStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 5559CF261EBA7B6500815DD9 /* ULIResourceForkStream.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,13 @@
 		5559CF141EBA59E500815DD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5559CF171EBA59E500815DD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5559CF191EBA59E500815DD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5559CF1F1EBA5A2500815DD9 /* ULIResourceFork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ULIResourceFork.h; path = ULIResourceFile/ULIResourceFork.h; sourceTree = SOURCE_ROOT; };
+		5559CF201EBA5A2500815DD9 /* ULIResourceFork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ULIResourceFork.m; path = ULIResourceFile/ULIResourceFork.m; sourceTree = SOURCE_ROOT; };
+		5559CF221EBA60EC00815DD9 /* ULIStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ULIStream.h; path = ULIResourceFile/ULIStream.h; sourceTree = SOURCE_ROOT; };
+		5559CF231EBA60EC00815DD9 /* ULIStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ULIStream.m; path = ULIResourceFile/ULIStream.m; sourceTree = SOURCE_ROOT; };
+		5559CF251EBA7B6500815DD9 /* ULIResourceForkStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ULIResourceForkStream.h; path = ULIResourceFile/ULIResourceForkStream.h; sourceTree = SOURCE_ROOT; };
+		5559CF261EBA7B6500815DD9 /* ULIResourceForkStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ULIResourceForkStream.m; path = ULIResourceFile/ULIResourceForkStream.m; sourceTree = SOURCE_ROOT; };
+		5559CF281EBA7BBC00815DD9 /* ULIStream_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ULIStream_Private.h; path = ULIResourceFile/ULIStream_Private.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +70,13 @@
 				5559CF0C1EBA59E500815DD9 /* AppDelegate.m */,
 				5559CF111EBA59E500815DD9 /* ViewController.h */,
 				5559CF121EBA59E500815DD9 /* ViewController.m */,
+				5559CF1F1EBA5A2500815DD9 /* ULIResourceFork.h */,
+				5559CF201EBA5A2500815DD9 /* ULIResourceFork.m */,
+				5559CF221EBA60EC00815DD9 /* ULIStream.h */,
+				5559CF281EBA7BBC00815DD9 /* ULIStream_Private.h */,
+				5559CF231EBA60EC00815DD9 /* ULIStream.m */,
+				5559CF251EBA7B6500815DD9 /* ULIResourceForkStream.h */,
+				5559CF261EBA7B6500815DD9 /* ULIResourceForkStream.m */,
 				5559CF141EBA59E500815DD9 /* Assets.xcassets */,
 				5559CF161EBA59E500815DD9 /* Main.storyboard */,
 				5559CF191EBA59E500815DD9 /* Info.plist */,
@@ -147,8 +164,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5559CF271EBA7B6500815DD9 /* ULIResourceForkStream.m in Sources */,
 				5559CF131EBA59E500815DD9 /* ViewController.m in Sources */,
+				5559CF241EBA60EC00815DD9 /* ULIStream.m in Sources */,
 				5559CF101EBA59E500815DD9 /* main.m in Sources */,
+				5559CF211EBA5A2600815DD9 /* ULIResourceFork.m in Sources */,
 				5559CF0D1EBA59E500815DD9 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
