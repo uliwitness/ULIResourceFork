@@ -174,13 +174,21 @@
 		availableLength = self.data.length -_offsetInStream;
 	}
 	[self.data getBytes: buffer range: NSMakeRange( _offsetInStream, availableLength )];
+	_offsetInStream += availableLength;
 	return availableLength;
 }
 
 
 - (NSData*) readDataOfLength: (NSUInteger)len
 {
-	return [self.data subdataWithRange: NSMakeRange(_offsetInStream, len)];
+	NSUInteger availableLength = len;
+	if( (_offsetInStream + availableLength) > self.data.length )
+	{
+		availableLength = self.data.length -_offsetInStream;
+	}
+	NSData *theData = [self.data subdataWithRange: NSMakeRange(_offsetInStream, availableLength)];
+	_offsetInStream += availableLength;
+	return theData;
 }
 
 @end
