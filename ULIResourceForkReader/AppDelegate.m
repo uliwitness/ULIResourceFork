@@ -18,9 +18,12 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-//	ULIInputStream * fileStream = [ULIInputStream inputStreamWithURL: [NSURL fileURLWithPath: @"/Users/uli/Testfile.rsrc"]];
-	ULIInputStream * fileStream = [ULIInputStream inputStreamForResourceForkWithURL: [NSURL fileURLWithPath: @"/Users/uli/Testfile.rsrc"]];
-	
+#if 0
+	ULIInputStream * fileStream = [ULIInputStream inputStreamWithURL: [NSURL fileURLWithPath: @"/Users/uli/TestfileData.rsrc"]];
+#else
+	ULIInputStream * fileStream = [ULIInputStream inputStreamForResourceForkWithURL: [NSURL fileURLWithPath: @"/Users/uli/TestfileRes.rsrc"]];
+#endif
+
 	[fileStream open];
 	NSError * errObj = nil;
 	ULIResourceFork * fork = [ULIResourceFork resourceForkFromStream: fileStream error: &errObj];
