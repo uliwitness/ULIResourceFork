@@ -113,7 +113,7 @@ enum
 		uint32_t currType = 0;
 		if( [inStream read: (uint8_t*)&currType maxLength: sizeof(currType)] != sizeof(currType) )
 		{
-			*outError = [NSError errorWithDomain: ULIResourceForkErrorDomain code: ULIResourceForkPrematureEndOfFileError userInfo: @{}];
+			*outError = [NSError errorWithDomain: ULIResourceForkErrorDomain code: ULIResourceForkPrematureEndOfFileError userInfo: @{ NSLocalizedFailureReasonErrorKey: @"Couldn't read type" }];
 			return;
 		}
 		NSString* typeStr = [[NSString alloc] initWithBytes: &currType length: 4 encoding: NSMacOSRomanStringEncoding];
@@ -143,7 +143,7 @@ enum
 			uint32_t		dataOffset = 0;
 			if( [inStream read: attributesAndDataOffset maxLength: sizeof(attributesAndDataOffset)] != sizeof(attributesAndDataOffset) )
 			{
-				*outError = [NSError errorWithDomain: ULIResourceForkErrorDomain code: ULIResourceForkPrematureEndOfFileError userInfo: @{}];
+				*outError = [NSError errorWithDomain: ULIResourceForkErrorDomain code: ULIResourceForkPrematureEndOfFileError userInfo: @{ NSLocalizedFailureReasonErrorKey: @"Couldn't read attributes/data offset." }];
 				return;
 			}
 			uint8_t	resourceAttributes = attributesAndDataOffset[0];
@@ -162,7 +162,7 @@ enum
 			
 			NSString * resName = @"";
 			NSData* resData = [inStream readDataOfLength: dataLength];
-			if( -1 != (long)nameOffset )
+			if( 65535 != nameOffset )
 			{
 				NSUInteger nameSeekPos = (NSUInteger)resourceMapOffset +(NSUInteger)nameListOffset +(NSUInteger)nameOffset;
 				[inStream setOffsetInStream: nameSeekPos];
@@ -170,7 +170,7 @@ enum
 				uint8_t nameLength = 0;
 				if( [inStream read: (uint8_t*)&nameLength maxLength: sizeof(nameLength)] != sizeof(nameLength) )
 				{
-					*outError = [NSError errorWithDomain: ULIResourceForkErrorDomain code: ULIResourceForkPrematureEndOfFileError userInfo: @{}];
+					*outError = [NSError errorWithDomain: ULIResourceForkErrorDomain code: ULIResourceForkPrematureEndOfFileError userInfo: @{ NSLocalizedFailureReasonErrorKey: @"Couldn't read name length." }];
 					return;
 				}
 				if( nameLength > 0 )
@@ -178,7 +178,7 @@ enum
 					char resourceNameBytes[255] = {};
 					if( [inStream read: (uint8_t*)resourceNameBytes maxLength: nameLength] != nameLength )
 					{
-						*outError = [NSError errorWithDomain: ULIResourceForkErrorDomain code: ULIResourceForkPrematureEndOfFileError userInfo: @{}];
+						*outError = [NSError errorWithDomain: ULIResourceForkErrorDomain code: ULIResourceForkPrematureEndOfFileError userInfo: @{ NSLocalizedFailureReasonErrorKey: @"Couldn't read name." }];
 						return;
 					}
 					resName = [[NSString alloc] initWithBytes: resourceNameBytes length: nameLength encoding: NSMacOSRomanStringEncoding];
@@ -197,6 +197,8 @@ enum
 			theResource.isLocked = (resourceAttributes & ULIResourceAttributeIsLocked) != 0;
 			theResource.isPurgeable = (resourceAttributes & ULIResourceAttributeIsPurgeable) != 0;
 			theResource.shouldBeLoadedInSystemHeap = (resourceAttributes & ULIResourceAttributeShouldBeLoadedInSystemHeap) != 0;
+			
+//			NSLog(@"%@",theResource);
 			
 			[resources addObject: theResource];
 		}
