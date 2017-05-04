@@ -72,6 +72,8 @@
 			return nil;
 		NSString * thePath = [inURL path];
 		_fileRecord = fopen([thePath fileSystemRepresentation],"r");
+		if( !_fileRecord )
+			return nil;
 	}
 	return self;
 }

@@ -8,8 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ViewController : NSViewController
+@interface ViewController : NSViewController <NSBrowserDelegate>
 
+@property IBOutlet NSButton * dataForkRadioButton;
+@property IBOutlet NSButton * xattrResourceForkRadioButton;
+@property IBOutlet NSButton * namedForkResourceForkRadioButton;
+@property IBOutlet NSPathControl * pathControl;
+@property IBOutlet NSBrowser * resourceBrowser;
+
+-(IBAction) chooseFile: (id)sender;
+-(IBAction) updateResourceFileView: (id)sender;
 
 @end
 

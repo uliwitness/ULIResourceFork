@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -653,7 +655,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider=""/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
@@ -662,7 +664,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Resource Lister" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -679,11 +681,93 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="vD9-AJ-me6">
+                                <rect key="frame" x="19" y="181" width="187" height="18"/>
+                                <buttonCell key="cell" type="radio" title="Resource Fork (xattr)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="BK8-kK-eJj">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="updateResourceFileView:" target="XfG-lQ-9wD" id="U3n-wL-1gY"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="PYY-ej-8XP">
+                                <rect key="frame" x="19" y="159" width="187" height="18"/>
+                                <buttonCell key="cell" type="radio" title="Resource Fork (namedfork)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="zRv-pR-GhU">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="updateResourceFileView:" target="XfG-lQ-9wD" id="oiV-it-M3b"/>
+                                </connections>
+                            </button>
+                            <pathControl verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76g-LF-ujt">
+                                <rect key="frame" x="20" y="228" width="347" height="22"/>
+                                <pathCell key="cell" selectable="YES" editable="YES" alignment="left" id="rLf-bZ-yNE">
+                                    <font key="font" metaFont="system"/>
+                                    <url key="url" string="file://localhost/Applications/"/>
+                                    <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.97254901959999995" alpha="1" colorSpace="deviceRGB"/>
+                                </pathCell>
+                            </pathControl>
+                            <button horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5nL-IP-KiU">
+                                <rect key="frame" x="369" y="223" width="97" height="32"/>
+                                <buttonCell key="cell" type="push" title="Choose…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="I92-P7-zoP">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="chooseFile:" target="XfG-lQ-9wD" id="t6d-dI-pUg"/>
+                                </connections>
+                            </button>
+                            <browser verticalHuggingPriority="750" allowsExpansionToolTips="YES" enabled="YES" hasHorizontalScroller="YES" allowsEmptySelection="YES" defaultColumnWidth="100" minColumnWidth="100" maxVisibleColumns="2" separatesColumns="YES" allowsTypeSelect="YES" columnResizingType="user" translatesAutoresizingMaskIntoConstraints="NO" id="fA7-xi-SOW">
+                                <rect key="frame" x="-1" y="-2" width="482" height="154"/>
+                                <connections>
+                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="Ck5-9U-F04"/>
+                                </connections>
+                            </browser>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="jSk-Wh-toD">
+                                <rect key="frame" x="19" y="203" width="187" height="18"/>
+                                <buttonCell key="cell" type="radio" title="Data Fork" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="eH8-Dh-26j">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="updateResourceFileView:" target="XfG-lQ-9wD" id="gMf-uL-QVW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fA7-xi-SOW" secondAttribute="trailing" constant="-1" id="7QC-pa-CJ0"/>
+                            <constraint firstItem="jSk-Wh-toD" firstAttribute="top" secondItem="76g-LF-ujt" secondAttribute="bottom" constant="8" id="8LT-eV-F3F"/>
+                            <constraint firstItem="vD9-AJ-me6" firstAttribute="width" secondItem="jSk-Wh-toD" secondAttribute="width" id="EEk-FF-8dP"/>
+                            <constraint firstItem="76g-LF-ujt" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="I6h-N2-Au9"/>
+                            <constraint firstItem="fA7-xi-SOW" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="-1" id="LHW-CY-DPk"/>
+                            <constraint firstItem="5nL-IP-KiU" firstAttribute="leading" secondItem="76g-LF-ujt" secondAttribute="trailing" constant="8" id="OGV-uy-aHm"/>
+                            <constraint firstItem="vD9-AJ-me6" firstAttribute="leading" secondItem="jSk-Wh-toD" secondAttribute="leading" id="SJf-cC-0cF"/>
+                            <constraint firstItem="jSk-Wh-toD" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="Shl-3i-wXH"/>
+                            <constraint firstItem="PYY-ej-8XP" firstAttribute="top" secondItem="vD9-AJ-me6" secondAttribute="bottom" constant="6" id="Taj-Ki-LMT"/>
+                            <constraint firstItem="PYY-ej-8XP" firstAttribute="width" secondItem="jSk-Wh-toD" secondAttribute="width" id="Tv7-Ja-taK"/>
+                            <constraint firstItem="vD9-AJ-me6" firstAttribute="top" secondItem="jSk-Wh-toD" secondAttribute="bottom" constant="6" id="UFk-en-LRD"/>
+                            <constraint firstAttribute="trailing" secondItem="5nL-IP-KiU" secondAttribute="trailing" constant="20" id="WE6-bZ-TEL"/>
+                            <constraint firstItem="PYY-ej-8XP" firstAttribute="leading" secondItem="jSk-Wh-toD" secondAttribute="leading" id="bT6-OK-Xgx"/>
+                            <constraint firstItem="76g-LF-ujt" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="gvh-k2-bDt"/>
+                            <constraint firstAttribute="bottom" secondItem="fA7-xi-SOW" secondAttribute="bottom" constant="-2" id="wdg-3p-fT3"/>
+                            <constraint firstItem="fA7-xi-SOW" firstAttribute="top" secondItem="PYY-ej-8XP" secondAttribute="bottom" constant="8" id="x8H-iB-YiE"/>
+                            <constraint firstItem="5nL-IP-KiU" firstAttribute="baseline" secondItem="76g-LF-ujt" secondAttribute="baseline" id="xzg-kA-xvL"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dataForkRadioButton" destination="jSk-Wh-toD" id="OsI-LK-UXA"/>
+                        <outlet property="namedForkResourceForkRadioButton" destination="PYY-ej-8XP" id="AUy-Oc-KbP"/>
+                        <outlet property="pathControl" destination="76g-LF-ujt" id="6jd-fo-P6K"/>
+                        <outlet property="resourceBrowser" destination="fA7-xi-SOW" id="Q5q-fj-WLk"/>
+                        <outlet property="xattrResourceForkRadioButton" destination="vD9-AJ-me6" id="S5k-ce-P34"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
